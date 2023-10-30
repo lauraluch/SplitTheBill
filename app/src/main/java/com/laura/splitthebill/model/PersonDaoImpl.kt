@@ -76,9 +76,11 @@ class PersonDaoImpl(context: Context) : PersonDao {
         arrayOf(person.id.toString())
     )
 
-    override fun deletePerson(id: Int): Int {
-        TODO("Not yet implemented")
-    }
+    override fun deletePerson(id: Int): Int = personSQLiteDatabase.delete(
+        PERSON_TABLE,
+        "$ID_COLUMN = ?",
+        arrayOf(id.toString())
+    )
 
     private fun Cursor.rowToPerson(): Person = Person(
         getInt(getColumnIndexOrThrow(ID_COLUMN)),
