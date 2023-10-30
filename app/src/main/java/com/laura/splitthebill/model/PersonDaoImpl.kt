@@ -69,9 +69,12 @@ class PersonDaoImpl(context: Context) : PersonDao {
         return peopleList
     }
 
-    override fun updatePerson(person: Person): Int {
-        TODO("Not yet implemented")
-    }
+    override fun updatePerson(person: Person): Int = personSQLiteDatabase.update(
+        PERSON_TABLE,
+        person.toContentValues(),
+        "$ID_COLUMN = ?",
+        arrayOf(person.id.toString())
+    )
 
     override fun deletePerson(id: Int): Int {
         TODO("Not yet implemented")
