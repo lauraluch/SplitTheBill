@@ -1,8 +1,10 @@
 package com.laura.splitthebill.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.View
+import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import com.laura.splitthebill.databinding.PersonDescBinding
 import com.laura.splitthebill.model.Constant.EXTRA_PERSON
@@ -14,6 +16,7 @@ class PersonDetailsActivity: AppCompatActivity() {
         PersonDescBinding.inflate(layoutInflater)
     }
 
+    private lateinit var itemsAdapter: ArrayAdapter<String>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(apdb.root)
@@ -29,6 +32,25 @@ class PersonDetailsActivity: AppCompatActivity() {
                 }
                 nameEt.setText(_receivedPerson.name)
                 totalPriceEt.setText(_receivedPerson.totalPricePaid.toString())
+
+                itemsAdapter = ArrayAdapter(this@PersonDetailsActivity, apdb.itemsBoughtLv, _receivedPerson.thingsBought)
+                itemsBoughtLv.adapter = itemsAdapter
+            }
+        }
+
+        with (apdb) {
+            saveBt.setOnClickListener {
+                val person = Person(
+                    id = receivedPerson?.id,
+                    name = nameEt.text.toString(),
+                    totalPricePaid = totalPriceEt.text.toString().toDouble(),
+                    thingsBought = itemsAdapter
+                )
+
+                val resultIntent = Intent()
+                resultIntent.putExtra(EXTRA_PERSON, person)
+                setResult(RESULT_OK, resultIntent)
+                finish()
             }
         }
     }
