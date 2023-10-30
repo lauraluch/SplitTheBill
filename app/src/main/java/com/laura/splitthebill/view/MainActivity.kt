@@ -122,4 +122,10 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
         unregisterForContextMenu(amb.peopleLv)
     }
+
+    fun updatePeopleList( _peopleList: MutableList<Person>){
+        peopleList.clear()
+        peopleList.addAll(_peopleList)
+        personAdapter.notifyDataSetChanged()
+    }
 }
