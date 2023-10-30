@@ -88,7 +88,7 @@
                 >
 
                 <Button
-                    android:id="@+id/addPersonBt"
+                    android:id="@+id/addItemBt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="12dp"
@@ -97,7 +97,7 @@
                     />
 
                 <Button
-                    android:id="@+id/splitBillBt"
+                    android:id="@+id/saveBt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
