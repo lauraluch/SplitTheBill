@@ -67,4 +67,9 @@ class MainActivity : AppCompatActivity() {
         registerForContextMenu(amb.peopleLv)
         personController.getPeople()
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.person_menu_main, menu)
+        return true
+    }
 }
