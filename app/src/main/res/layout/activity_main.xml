@@ -4,26 +4,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.MainActivity"
-    android:padding="18dp">
+    tools:context=".view.MainActivity">
+
+    <include
+        android:id="@+id/toolbarIn"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        layout="@layout/toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbarIn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:padding="18dp">
 
-        <TextView
-            android:id="@+id/titleTv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:layout_marginBottom="32dp"
-            android:text="Split the Bill"
-            android:textSize="36sp"
-            android:textStyle="bold|italic"
-            android:layout_gravity="center"
-            android:textColor="@color/design_default_color_primary"
-            />
+<!--        <TextView-->
+<!--            android:id="@+id/titleTv"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="32dp"-->
+<!--            android:layout_marginBottom="32dp"-->
+<!--            android:text="Split the Bill"-->
+<!--            android:textSize="36sp"-->
+<!--            android:textStyle="bold|italic"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:textColor="@color/design_default_color_primary"-->
+<!--            />-->
 
         <LinearLayout
             android:layout_width="match_parent"

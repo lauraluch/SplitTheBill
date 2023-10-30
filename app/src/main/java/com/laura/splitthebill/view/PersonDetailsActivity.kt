@@ -32,9 +32,6 @@ class PersonDetailsActivity: AppCompatActivity() {
                 }
                 nameEt.setText(_receivedPerson.name)
                 totalPriceEt.setText(_receivedPerson.totalPricePaid.toString())
-
-                itemsAdapter = ArrayAdapter(this@PersonDetailsActivity, apdb.itemsBoughtLv, _receivedPerson.thingsBought)
-                itemsBoughtLv.adapter = itemsAdapter
             }
         }
 
@@ -44,7 +41,8 @@ class PersonDetailsActivity: AppCompatActivity() {
                     id = receivedPerson?.id,
                     name = nameEt.text.toString(),
                     totalPricePaid = totalPriceEt.text.toString().toDouble(),
-                    thingsBought = itemsAdapter
+                    // Mudar lista vazia utilizada apenas para teste
+                    thingsBought = emptyList()
                 )
 
                 val resultIntent = Intent()
