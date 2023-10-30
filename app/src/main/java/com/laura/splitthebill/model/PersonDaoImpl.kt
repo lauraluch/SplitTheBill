@@ -2,6 +2,7 @@ package com.laura.splitthebill.model
 
 import android.content.ContentValues
 import android.content.Context
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.util.Log
 import com.laura.splitthebill.R
@@ -42,7 +43,14 @@ class PersonDaoImpl(context: Context) : PersonDao {
     ).toInt()
 
     override fun readPerson(id: Int): Person? {
-        TODO("Not yet implemented")
+        val cursor = personSQLiteDatabase.rawQuery(
+            "SELECT * FROM $PERSON_TABLE WHERE $ID_COLUMN = ?",
+            arrayOf(id.toString())
+        )
+
+        val person = if(cursor.moveToFirst()) cursor.rowToPerson() else null
+        cursor.close()
+        return person
     }
 
     override fun readPeople(): MutableList<Person> {
@@ -56,6 +64,14 @@ class PersonDaoImpl(context: Context) : PersonDao {
     override fun deletePerson(id: Int): Int {
         TODO("Not yet implemented")
     }
+
+    private fun Cursor.rowToPerson(): Person = Person(
+        getInt(getColumnIndexOrThrow(ID_COLUMN)),
+        getString(getColumnIndexOrThrow(NAME_COLUMN)),
+        getDouble(getColumnIndexOrThrow(TOTAL_PRICE_COLUMN)),
+        // Alterar lista vazia passada como teste
+        emptyList()
+    )
 
     private fun Person.toContentValues(): ContentValues = with(ContentValues()) {
         put(NAME_COLUMN, name)
