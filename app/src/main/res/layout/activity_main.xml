@@ -33,7 +33,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Preenchendo as informações"
+                android:text="Participantes da reunião:"
                 android:textSize="18sp"/>
 
             <LinearLayout
@@ -42,32 +42,14 @@
                 android:orientation="vertical"
                 android:layout_marginTop="18dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Valor:"
-                    android:textStyle="bold"
-                    android:textSize="20sp"/>
-
-                <EditText
+                <ListView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:hint="19.99"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Quantidade de pessoas:"
-                    android:textStyle="bold"
-                    android:textSize="20sp"/>
-
-                <!-- Calculada automaticamente? -->
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:hint="3"/>
+                    android:layout_height="360dp"
+                    android:id="@+id/peopleLv"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    />
 
             </LinearLayout>
 
