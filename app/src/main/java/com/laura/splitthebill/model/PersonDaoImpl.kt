@@ -54,7 +54,19 @@ class PersonDaoImpl(context: Context) : PersonDao {
     }
 
     override fun readPeople(): MutableList<Person> {
-        TODO("Not yet implemented")
+        val peopleList = mutableListOf<Person>()
+
+        val cursor = personSQLiteDatabase.rawQuery(
+            "SELECT * FROM $PERSON_TABLE ORDER BY $NAME_COLUMN",
+            null
+        )
+
+        while (cursor.moveToNext()) {
+            peopleList.add(cursor.rowToPerson())
+        }
+        cursor.close()
+
+        return peopleList
     }
 
     override fun updatePerson(person: Person): Int {
