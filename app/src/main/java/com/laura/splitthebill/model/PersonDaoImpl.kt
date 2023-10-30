@@ -1,6 +1,10 @@
 package com.laura.splitthebill.model
 
 import android.content.Context
+import android.database.sqlite.SQLiteDatabase
+import android.util.Log
+import com.laura.splitthebill.R
+import java.sql.SQLException
 
 class PersonDaoImpl(context: Context) : PersonDao {
     companion object Constant {
@@ -8,34 +12,26 @@ class PersonDaoImpl(context: Context) : PersonDao {
         private const val PERSON_TABLE = "person"
         private const val ID_COLUMN = "id"
         private const val NAME_COLUMN = "name"
-        private const val TOTAL_PRICE_COLUMN = "total"
-
-        private const val ITEM_TABLE = "item"
-        private const val PRICE_COLUMN = "price"
-
-        private const val PERSON_ITEMS_TABLE = "person_items"
-        private const val ID_PERSON_COLUMN = "person_id"
-        private const val NAME_PERSON_COLUMN = "person_name"
-        private const val ID_ITEM_COLUMN = "item_id"
-        private const val NAME_ITEM_COLUMN = "item_name"
+        private const val TOTAL_PRICE_COLUMN = "totalPrice"
 
         private const val CREATE_PERSON_TABLE_STATEMENT =
             "CREATE TABLE IF NOT EXISTS $PERSON_TABLE (" +
                     "$ID_COLUMN INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     "$NAME_COLUMN TEXT NOT NULL, " +
                     "$TOTAL_PRICE_COLUMN REAL );"
+    }
 
-        private const val CREATE_ITEM_TABLE_STATEMENT =
-            "CREATE TABLE IF NOT EXISTS $ITEM_TABLE (" +
-                    "$ID_COLUMN INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    "$NAME_COLUMN TEXT NOT NULL, " +
-                    "$PRICE_COLUMN REAL NOT NULL);"
+    private val personSQLiteDatabase: SQLiteDatabase
 
-        private const val CREATE_PERSON_ITEM_TABLE_STATEMENT =
-            "CREATE TABLE IF NOT EXISTS $PERSON_ITEMS_TABLE (" +
-                    "$ID_COLUMN INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    "$NAME_COLUMN INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    "$NAME_COLUMN TEXT NOT NULL );"
+    init {
+        personSQLiteDatabase =
+            context.openOrCreateDatabase(PEOPLE_DATABASE_FILE, Context.MODE_PRIVATE, null)
+        try {
+            personSQLiteDatabase.execSQL(CREATE_PERSON_TABLE_STATEMENT)
+
+        } catch(se: SQLException) {
+            Log.e(context.getString(R.string.app_name), se.message.toString())
+        }
     }
 
     override fun createPerson(person: Person): Int {
