@@ -3,8 +3,12 @@ package com.laura.splitthebill.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.ContextMenu
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.AdapterView
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import com.laura.splitthebill.R
@@ -82,5 +86,40 @@ class MainActivity : AppCompatActivity() {
             }
             else -> true
         }
+    }
+
+    override fun onCreateContextMenu(
+        menu: ContextMenu?,
+        v: View?,
+        menuInfo: ContextMenu.ContextMenuInfo?
+    ) {
+        menuInflater.inflate(R.menu.person_menu_main, menu)
+    }
+
+    override fun onContextItemSelected(item: MenuItem): Boolean {
+        val position = (item.menuInfo as AdapterView.AdapterContextMenuInfo).position
+        val person = peopleList[position]
+
+        return when (item.itemId){
+            R.id.removePersonMi -> {
+                // Revisar
+                personController.removePerson(person.id!!)
+                Toast.makeText(this,"Pessoa removida da lista", Toast.LENGTH_SHORT).show()
+                true
+            }
+            R.id.editPersonMi -> {
+                val personToEdit = peopleList[position]
+                val editPersonIntent = Intent(this, PersonDetailsActivity::class.java)
+                editPersonIntent.putExtra(EXTRA_PERSON, personToEdit)
+                parl.launch(editPersonIntent)
+                true
+            }
+            else -> {true}
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        unregisterForContextMenu(amb.peopleLv)
     }
 }
