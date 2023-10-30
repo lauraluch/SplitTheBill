@@ -12,6 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SplitTheBill"
         tools:targetApi="31">
+        <activity android:name=".view.PersonDetailsActivity"
+            android:exported="false"/>
         <activity
             android:name=".view.MainActivity"
             android:exported="true">
