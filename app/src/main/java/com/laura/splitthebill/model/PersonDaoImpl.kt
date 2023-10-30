@@ -1,5 +1,6 @@
 package com.laura.splitthebill.model
 
+import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.util.Log
@@ -34,9 +35,11 @@ class PersonDaoImpl(context: Context) : PersonDao {
         }
     }
 
-    override fun createPerson(person: Person): Int {
-        TODO("Not yet implemented")
-    }
+    override fun createPerson(person: Person) = personSQLiteDatabase.insert(
+        PERSON_TABLE,
+        null,
+        person.toContentValues()
+    ).toInt()
 
     override fun readPerson(id: Int): Person? {
         TODO("Not yet implemented")
@@ -52,5 +55,11 @@ class PersonDaoImpl(context: Context) : PersonDao {
 
     override fun deletePerson(id: Int): Int {
         TODO("Not yet implemented")
+    }
+
+    private fun Person.toContentValues(): ContentValues = with(ContentValues()) {
+        put(NAME_COLUMN, name)
+        put(TOTAL_PRICE_COLUMN, totalPricePaid)
+        this
     }
 }
