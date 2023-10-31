@@ -15,12 +15,14 @@ class PersonDaoImpl(context: Context) : PersonDao {
         private const val ID_COLUMN = "id"
         private const val NAME_COLUMN = "name"
         private const val TOTAL_PRICE_COLUMN = "totalPrice"
+        private const val THINGS_BOUGHT_COLUMN = "things"
 
         private const val CREATE_PERSON_TABLE_STATEMENT =
             "CREATE TABLE IF NOT EXISTS $PERSON_TABLE (" +
                     "$ID_COLUMN INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     "$NAME_COLUMN TEXT NOT NULL, " +
-                    "$TOTAL_PRICE_COLUMN REAL );"
+                    "$TOTAL_PRICE_COLUMN REAL NOT NULL, " +
+                    "$THINGS_BOUGHT_COLUMN TEXT NOT NULL );"
     }
 
     private val personSQLiteDatabase: SQLiteDatabase
@@ -86,13 +88,13 @@ class PersonDaoImpl(context: Context) : PersonDao {
         getInt(getColumnIndexOrThrow(ID_COLUMN)),
         getString(getColumnIndexOrThrow(NAME_COLUMN)),
         getDouble(getColumnIndexOrThrow(TOTAL_PRICE_COLUMN)),
-        // Alterar lista vazia passada como teste
-        emptyList()
+        getString(getColumnIndexOrThrow(THINGS_BOUGHT_COLUMN))
     )
 
     private fun Person.toContentValues(): ContentValues = with(ContentValues()) {
         put(NAME_COLUMN, name)
         put(TOTAL_PRICE_COLUMN, totalPricePaid)
+        put(THINGS_BOUGHT_COLUMN, thingsBought)
         this
     }
 }

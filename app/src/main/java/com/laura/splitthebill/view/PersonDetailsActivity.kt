@@ -28,10 +28,12 @@ class PersonDetailsActivity: AppCompatActivity() {
                 if(viewPerson) {
                     nameEt.isEnabled = false
                     totalPriceEt.isEnabled = false
+                    thingsBoughtEt.isEnabled = false
                     saveBt.visibility = View.GONE
                 }
                 nameEt.setText(_receivedPerson.name)
                 totalPriceEt.setText(_receivedPerson.totalPricePaid.toString())
+                thingsBoughtEt.setText(_receivedPerson.thingsBought)
             }
         }
 
@@ -41,8 +43,7 @@ class PersonDetailsActivity: AppCompatActivity() {
                     id = receivedPerson?.id,
                     name = nameEt.text.toString(),
                     totalPricePaid = totalPriceEt.text.toString().toDouble(),
-                    // Mudar lista vazia utilizada apenas para teste
-                    thingsBought = emptyList()
+                    thingsBought = thingsBoughtEt.text.toString()
                 )
 
                 val resultIntent = Intent()

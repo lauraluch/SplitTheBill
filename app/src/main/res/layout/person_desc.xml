@@ -70,11 +70,20 @@
                 android:layout_marginTop="24dp"
                 android:textSize="20sp"/>
 
-            <ListView
-                android:id="@+id/itemsBoughtLv"
+            <EditText
+                android:id="@+id/thingsBoughtEt"
                 android:layout_width="match_parent"
-                android:layout_marginTop="18dp"
-                android:layout_height="260dp"/>
+                android:layout_height="wrap_content"
+                android:hint="e.g Tequila, Amendoim"
+                android:textStyle="normal"
+                android:textSize="18sp"/>
+
+<!--            <ListView-->
+<!--                android:id="@+id/itemsBoughtLv"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_marginTop="18dp"-->
+<!--                android:layout_height="260dp"/>-->
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -87,14 +96,14 @@
 
                 >
 
-                <Button
-                    android:id="@+id/addItemBt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="12dp"
-                    android:text="Adicionar item..."
-                    android:layout_gravity="center"
-                    />
+<!--                <Button-->
+<!--                    android:id="@+id/addItemBt"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginEnd="12dp"-->
+<!--                    android:text="Adicionar item..."-->
+<!--                    android:layout_gravity="center"-->
+<!--                    />-->
 
                 <Button
                     android:id="@+id/saveBt"
