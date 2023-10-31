@@ -16,7 +16,6 @@ class PersonDetailsActivity: AppCompatActivity() {
         PersonDescBinding.inflate(layoutInflater)
     }
 
-    private lateinit var itemsAdapter: ArrayAdapter<String>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(apdb.root)

@@ -10,7 +10,7 @@ import androidx.room.Update
 interface PersonRoomDao {
 
     companion object {
-        private const val PEOPLE_DATABASE_FILE = "people"
+        const val PEOPLE_DATABASE_FILE = "people_room"
         private const val PERSON_TABLE = "person"
         private const val ID_COLUMN = "id"
         private const val NAME_COLUMN = "name"
@@ -19,14 +19,14 @@ interface PersonRoomDao {
 
     }
     @Insert
-    fun createContact(person: Person)
-    @Query("SELECT *FROM $PERSON_TABLE WHERE $ID_COLUMN = :id")
-    fun retrieveContact(id: Int): Person?
+    fun createPerson(person: Person)
+    @Query("SELECT * FROM $PERSON_TABLE WHERE $ID_COLUMN = :id")
+    fun readPerson(id: Int): Person?
     @Query("SELECT * FROM $PERSON_TABLE ORDER BY $NAME_COLUMN")
-    fun retrieveContacts(): MutableList<Person>
+    fun readPerson(): MutableList<Person>
     @Update
-    fun updateContact(person: Person): Int
+    fun updatePerson(person: Person): Int
     @Delete
-    fun deleteContact(person: Person): Int
+    fun deletePerson(person: Person): Int
 
 }

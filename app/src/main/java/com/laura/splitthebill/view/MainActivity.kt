@@ -14,6 +14,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import com.laura.splitthebill.R
 import com.laura.splitthebill.adapter.PersonAdapter
 import com.laura.splitthebill.controller.PersonController
+import com.laura.splitthebill.controller.PersonRoomController
 import com.laura.splitthebill.databinding.ActivityMainBinding
 import com.laura.splitthebill.model.Constant.EXTRA_PERSON
 import com.laura.splitthebill.model.Constant.VIEW_PERSON
@@ -26,8 +27,8 @@ class MainActivity : AppCompatActivity() {
 
     private val peopleList: MutableList<Person> = mutableListOf()
 
-    private val personController: PersonController by lazy {
-        PersonController(this)
+    private val personController: PersonRoomController by lazy {
+        PersonRoomController(this)
     }
 
     private val personAdapter: PersonAdapter by lazy {
@@ -105,7 +106,7 @@ class MainActivity : AppCompatActivity() {
         return when (item.itemId){
             R.id.removePersonMi -> {
                 // Revisar
-                personController.removePerson(person.id!!)
+                personController.removePerson(person)
                 Toast.makeText(this,"Pessoa removida da lista", Toast.LENGTH_SHORT).show()
                 true
             }
