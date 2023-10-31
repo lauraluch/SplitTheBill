@@ -1,10 +1,10 @@
-package br.edu.scl.ifsp.ads.contatospdm.model
+package com.laura.splitthebill.model
+
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import com.laura.splitthebill.model.Person
 
 @Dao
 interface PersonRoomDao {
