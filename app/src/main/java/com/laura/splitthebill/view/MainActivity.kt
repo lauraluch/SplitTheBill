@@ -105,7 +105,6 @@ class MainActivity : AppCompatActivity() {
 
         return when (item.itemId){
             R.id.removePersonMi -> {
-                // Revisar
                 personController.removePerson(person)
                 Toast.makeText(this,"Pessoa removida da lista", Toast.LENGTH_SHORT).show()
                 true

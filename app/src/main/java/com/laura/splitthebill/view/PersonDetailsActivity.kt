@@ -43,6 +43,7 @@ class PersonDetailsActivity: AppCompatActivity() {
                     name = nameEt.text.toString(),
                     totalPricePaid = totalPriceEt.text.toString().toDouble(),
                     thingsBought = thingsBoughtEt.text.toString()
+
                 )
 
                 val resultIntent = Intent()

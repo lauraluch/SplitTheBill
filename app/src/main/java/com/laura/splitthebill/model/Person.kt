@@ -16,5 +16,9 @@ data class Person(
     @NonNull
     var totalPricePaid: Double,
     @NonNull
-    var thingsBought: String
+    var thingsBought: String,
+    @NonNull
+    var amountToReceive: Double = 0.0,
+    @NonNull
+    var amountToPay: Double = 0.0
 ): Parcelable
