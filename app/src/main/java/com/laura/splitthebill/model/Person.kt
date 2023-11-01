@@ -13,12 +13,21 @@ data class Person(
     var id: Int?,
     @NonNull
     var name: String,
-    @NonNull
-    var totalPricePaid: Double,
-    @NonNull
-    var thingsBought: String,
-    @NonNull
-    var amountToReceive: Double = 0.0,
-    @NonNull
-    var amountToPay: Double = 0.0
+//    @NonNull
+//    var totalPricePaid: Double,
+//    @NonNull
+//    var thingsBought: String,
+//    @NonNull
+//    var amountToReceive: Double = 0.0,
+//    @NonNull
+//    var amountToPay: Double = 0.0,
+
+    var itemOneName: String,
+    var itemOnePrice: Double,
+
+    var itemTwoName: String,
+    var itemTwoPrice: Double,
+
+    var itemThreeName: String,
+    var itemThreePrice: Double,
 ): Parcelable

@@ -2,14 +2,14 @@ package com.laura.splitthebill.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.view.View
-import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import com.laura.splitthebill.databinding.PersonDescBinding
+import com.laura.splitthebill.model.Constant.EXTRA_PAYMENTS
 import com.laura.splitthebill.model.Constant.EXTRA_PERSON
 import com.laura.splitthebill.model.Constant.VIEW_PERSON
 import com.laura.splitthebill.model.Person
+import java.util.Random
 
 class PersonDetailsActivity: AppCompatActivity() {
     private val apdb: PersonDescBinding by lazy {
@@ -21,18 +21,35 @@ class PersonDetailsActivity: AppCompatActivity() {
         setContentView(apdb.root)
 
         val receivedPerson = intent.getParcelableExtra<Person>(EXTRA_PERSON)
+        val receivedPayments = intent.getParcelableExtra<Person>(EXTRA_PAYMENTS)
+
         receivedPerson?.let { _receivedPerson ->
             val viewPerson: Boolean = intent.getBooleanExtra(VIEW_PERSON, false)
             with(apdb) {
                 if(viewPerson) {
                     nameEt.isEnabled = false
-                    totalPriceEt.isEnabled = false
-                    thingsBoughtEt.isEnabled = false
+                    itemOneNameEt.isEnabled = false
+                    itemOnePriceEt.isEnabled = false
+                    itemTwoNameEt.isEnabled = false
+                    itemTwoPriceEt.isEnabled = false
+                    itemThreeNameEt.isEnabled = false
+                    itemThreePriceEt.isEnabled = false
+                    paymentTv.setText(receivedPayments.toString())
                     saveBt.visibility = View.GONE
                 }
                 nameEt.setText(_receivedPerson.name)
-                totalPriceEt.setText(_receivedPerson.totalPricePaid.toString())
-                thingsBoughtEt.setText(_receivedPerson.thingsBought)
+
+                itemOneNameEt.setText(_receivedPerson.itemOneName)
+                itemOnePriceEt.setText(_receivedPerson.itemOnePrice.toString())
+
+                itemTwoNameEt.setText(_receivedPerson.itemTwoName)
+                itemTwoPriceEt.setText(_receivedPerson.itemTwoPrice.toString())
+
+                itemThreeNameEt.setText(_receivedPerson.itemThreeName)
+                itemThreePriceEt.setText(_receivedPerson.itemThreePrice.toString())
+
+                totalSpentEt.setText(calculateTotalSpent(_receivedPerson).toString())
+
             }
         }
 
@@ -41,9 +58,14 @@ class PersonDetailsActivity: AppCompatActivity() {
                 val person = Person(
                     id = receivedPerson?.id,
                     name = nameEt.text.toString(),
-                    totalPricePaid = totalPriceEt.text.toString().toDouble(),
-                    thingsBought = thingsBoughtEt.text.toString()
+                    itemOneName = returnNoDescNameToEmptyValues(itemOneNameEt.text.toString()),
+                    itemOnePrice = returnZeroToEmptyValues(itemOnePriceEt.text.toString()),
 
+                    itemTwoName = returnNoDescNameToEmptyValues(itemTwoNameEt.text.toString()),
+                    itemTwoPrice = returnZeroToEmptyValues(itemTwoPriceEt.text.toString()),
+
+                    itemThreeName = returnNoDescNameToEmptyValues(itemThreeNameEt.text.toString()),
+                    itemThreePrice = returnZeroToEmptyValues(itemThreePriceEt.text.toString())
                 )
 
                 val resultIntent = Intent()
@@ -53,4 +75,24 @@ class PersonDetailsActivity: AppCompatActivity() {
             }
         }
     }
+
+    private fun calculateTotalSpent(person: Person): Double {
+        val itemOnePrice = person.itemOnePrice
+        val itemTwoPrice = person.itemTwoPrice
+        val itemThreePrice = person.itemThreePrice
+
+        return itemOnePrice + itemTwoPrice + itemThreePrice
+    }
+
+    private fun returnZeroToEmptyValues(price: String): Double {
+        if (price.isEmpty() || price.isBlank()) return 0.0
+        return price.toDouble()
+    }
+
+    private fun returnNoDescNameToEmptyValues(name: String): String {
+        if (name.isEmpty() || name.isBlank()) return "N/A"
+        return name
+    }
+
+    private fun generateId(): Int = Random(System.currentTimeMillis()).nextInt()
 }

@@ -13,9 +13,9 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import com.laura.splitthebill.R
 import com.laura.splitthebill.adapter.PersonAdapter
-import com.laura.splitthebill.controller.PersonController
 import com.laura.splitthebill.controller.PersonRoomController
 import com.laura.splitthebill.databinding.ActivityMainBinding
+import com.laura.splitthebill.model.Constant.EXTRA_PAYMENTS
 import com.laura.splitthebill.model.Constant.EXTRA_PERSON
 import com.laura.splitthebill.model.Constant.VIEW_PERSON
 import com.laura.splitthebill.model.Person
@@ -67,6 +67,7 @@ class MainActivity : AppCompatActivity() {
             val person = peopleList[position]
             val viewPersonIntent = Intent(this, PersonDetailsActivity::class.java)
                 .putExtra(EXTRA_PERSON, person)
+                .putExtra(EXTRA_PAYMENTS, splitTotalBetweenPeople(person))
                 .putExtra(VIEW_PERSON,true)
 
             startActivity(viewPersonIntent)
@@ -74,6 +75,7 @@ class MainActivity : AppCompatActivity() {
 
         registerForContextMenu(amb.peopleLv)
         personController.getPeople()
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -120,6 +122,36 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    fun getTotal(peopleList: MutableList<Person>): Double {
+        var total = 0.0
+        var totalFromPerson = 0.0
+
+        for (person in peopleList) {
+            totalFromPerson = person.itemOnePrice + person.itemTwoPrice + person.itemThreePrice
+            total += totalFromPerson
+        }
+
+        println(total)
+        return total
+    }
+
+    fun splitTotalBetweenPeople(person: Person): String {
+        val total = getTotal(peopleList)
+        val totalSplit = total / peopleList.size
+        val totalPaid = person.itemOnePrice + person.itemTwoPrice + person.itemThreePrice
+        var shouldReceive = 0.0
+        var shouldPay = 0.0
+
+        if (totalPaid > totalSplit) {
+            shouldReceive = totalPaid - totalSplit
+        }
+        else {
+            shouldPay = totalSplit - totalPaid
+        }
+
+        return "A receber: $shouldReceive | A pagar: $shouldPay"
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         unregisterForContextMenu(amb.peopleLv)
@@ -128,6 +160,8 @@ class MainActivity : AppCompatActivity() {
     fun updatePeopleList( _peopleList: MutableList<Person>){
         peopleList.clear()
         peopleList.addAll(_peopleList)
+        amb.totalTv.setText(getTotal(_peopleList).toString())
+//        amb.totalTv.setText(splitTotalBetweenPeople(peopleList[0]))
         personAdapter.notifyDataSetChanged()
     }
 }

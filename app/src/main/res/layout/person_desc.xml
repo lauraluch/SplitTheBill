@@ -12,19 +12,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/titleTv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:layout_marginBottom="18dp"
-            android:text="Detalhes da pessoa"
-            android:textSize="28sp"
-            android:textStyle="bold"
-            android:layout_gravity="center"
-            android:textColor="@color/black"
-            />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -46,38 +33,119 @@
                 android:textStyle="normal"
                 android:textSize="18sp"/>
 
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Valor total pago:"-->
+<!--                android:textStyle="bold"-->
+<!--                android:layout_marginTop="8dp"-->
+<!--                android:textSize="20sp"/>-->
+
+<!--            <EditText-->
+<!--                android:id="@+id/totalPriceEt"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:hint="e.g 94,99"-->
+<!--                android:textStyle="normal"-->
+<!--                android:textSize="18sp"/>-->
+
+<!--            <EditText-->
+<!--                android:id="@+id/thingsBoughtEt"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:hint="e.g Tequila, Amendoim"-->
+<!--                android:textStyle="normal"-->
+<!--                android:textSize="18sp"/>-->
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Valor total pago:"
+                android:text="Item 1"
                 android:textStyle="bold"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="8dp"
                 android:textSize="20sp"/>
-
             <EditText
-                android:id="@+id/totalPriceEt"
+                android:id="@+id/itemOneNameEt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="e.g 94,99"
+                android:hint="Nome do item"
+                android:textStyle="normal"
+                android:textSize="18sp"/>
+            <EditText
+                android:id="@+id/itemOnePriceEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Preço do Item"
+                android:textStyle="normal"
+                android:textSize="18sp"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Item 2"
+                android:textStyle="bold"
+                android:layout_marginTop="8dp"
+                android:textSize="20sp"/>
+            <EditText
+                android:id="@+id/itemTwoNameEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nome do item"
+                android:textStyle="normal"
+                android:textSize="18sp"/>
+            <EditText
+                android:id="@+id/itemTwoPriceEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Preço do Item"
+                android:textStyle="normal"
+                android:textSize="18sp"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Item 3"
+                android:textStyle="bold"
+                android:layout_marginTop="8dp"
+                android:textSize="20sp"/>
+            <EditText
+                android:id="@+id/itemThreeNameEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nome do item"
+                android:textStyle="normal"
+                android:textSize="18sp"/>
+            <EditText
+                android:id="@+id/itemThreePriceEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Preço do Item"
+                android:textStyle="normal"
+                android:textSize="18sp"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total gasto"
+                android:textStyle="bold"
+                android:textSize="18sp"/>
+            <TextView
+                android:id="@+id/totalSpentEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:textStyle="normal"
                 android:textSize="18sp"/>
 
             <TextView
+                android:id="@+id/paymentTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Itens comprados:"
+                android:text=""
                 android:textStyle="bold"
-                android:layout_marginTop="24dp"
-                android:textSize="20sp"/>
-
-            <EditText
-                android:id="@+id/thingsBoughtEt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="e.g Tequila, Amendoim"
-                android:textStyle="normal"
                 android:textSize="18sp"/>
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -89,15 +157,6 @@
                 android:gravity="center"
 
                 >
-
-<!--                <Button-->
-<!--                    android:id="@+id/addItemBt"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginEnd="12dp"-->
-<!--                    android:text="Adicionar item..."-->
-<!--                    android:layout_gravity="center"-->
-<!--                    />-->
 
                 <Button
                     android:id="@+id/saveBt"

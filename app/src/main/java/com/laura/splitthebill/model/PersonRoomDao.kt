@@ -10,12 +10,11 @@ import androidx.room.Update
 interface PersonRoomDao {
 
     companion object {
-        const val PEOPLE_DATABASE_FILE = "people_room"
+        const val PEOPLE_DATABASE_FILE = "people_room_v2"
         private const val PERSON_TABLE = "person"
         private const val ID_COLUMN = "id"
         private const val NAME_COLUMN = "name"
         private const val TOTAL_PRICE_COLUMN = "totalPrice"
-        private const val THINGS_BOUGHT_COLUMN = "things"
 
     }
     @Insert

@@ -26,20 +26,21 @@ class PersonAdapter(context: Context, private val peopleList: MutableList<Person
             )
             personTileView = tpb.root
 
-            val tilePersonHolder = TilePersonHolder(tpb.nameTv, tpb.totalPriceTv)
+            val tilePersonHolder = TilePersonHolder(tpb.nameTv)
             personTileView.tag = tilePersonHolder
         }
 
         val holder = personTileView.tag as TilePersonHolder
         holder.nameTv.setText(person.name)
-        holder.totalPriceTv.setText(person.totalPricePaid.toString())
+
+//        holder.totalPriceTv.setText(person.totalPricePaid.toString())
 
 
         tpb?.nameTv?.text = person.name
-        tpb?.totalPriceTv?.text = person.totalPricePaid.toString()
+//        tpb?.totalPriceTv?.text = person.totalPricePaid.toString()
 
         return personTileView
     }
 
-    private class TilePersonHolder(val nameTv: TextView, val totalPriceTv: TextView)
+    private class TilePersonHolder(val nameTv: TextView)
 }
