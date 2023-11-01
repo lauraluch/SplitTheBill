@@ -90,7 +90,7 @@ class PersonDetailsActivity: AppCompatActivity() {
     }
 
     private fun returnNoDescNameToEmptyValues(name: String): String {
-        if (name.isEmpty() || name.isBlank()) return "N/A"
+        if (name.isEmpty() || name.isBlank()) return ""
         return name
     }
 

@@ -26,21 +26,47 @@ class PersonAdapter(context: Context, private val peopleList: MutableList<Person
             )
             personTileView = tpb.root
 
-            val tilePersonHolder = TilePersonHolder(tpb.nameTv)
+            val tilePersonHolder = TilePersonHolder(tpb.nameTv, tpb.pricePaidTv, tpb.itemsTv)
             personTileView.tag = tilePersonHolder
         }
 
         val holder = personTileView.tag as TilePersonHolder
         holder.nameTv.setText(person.name)
+        holder.pricePaidTv.setText(getPrice(person).toString())
+        holder.itemsTv.setText(getItems(person))
 
 //        holder.totalPriceTv.setText(person.totalPricePaid.toString())
 
 
         tpb?.nameTv?.text = person.name
+        tpb?.pricePaidTv?.text = getPrice(person).toString()
+        tpb?.itemsTv?.text = getItems(person)
+
 //        tpb?.totalPriceTv?.text = person.totalPricePaid.toString()
 
         return personTileView
     }
 
-    private class TilePersonHolder(val nameTv: TextView)
+    fun getPrice(person: Person): Double {
+        return person.itemOnePrice + person.itemTwoPrice + person.itemThreePrice
+    }
+
+    fun getItems(person: Person) : String {
+        var itemOne = checkIfIsEmpty(person.itemOneName, false)
+        var itemTwo = checkIfIsEmpty(person.itemTwoName, false)
+        var itemThree = checkIfIsEmpty(person.itemThreeName, true)
+
+        return itemOne + itemTwo + itemThree
+    }
+
+    fun checkIfIsEmpty(string: String, isLastIndex: Boolean):String {
+        if (string.isEmpty() || string.isBlank()) {
+            return ""
+        }
+        if (isLastIndex) return string
+
+        return "$string, "
+    }
+
+    private class TilePersonHolder(val nameTv: TextView, val pricePaidTv: TextView, val itemsTv: TextView)
 }
